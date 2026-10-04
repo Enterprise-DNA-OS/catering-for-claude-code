@@ -1,115 +1,111 @@
-<h1 align="center">Catering for Claude Code</h1>
+# Catering for Claude Code
 
-<p align="center">
-  <strong>The open-source catering business management system that is just a database and Claude Code.</strong>
-</p>
+Events, menus, kitchen prep, dispatch and deposits in a database you own. Built by Enterprise DNA. MIT licence. Works with Claude Code, Codex, OpenCode or Cursor.
 
-<p align="center">
-  Created by <a href="https://www.enterprisedna.co"><strong>Enterprise DNA</strong></a>. Free and open source. Works with Claude Code, Codex, OpenCode or Cursor.
-</p>
-
-<!-- three-doors -->
-<table align="center">
-  <tr>
-    <td align="center"><strong>Do it yourself</strong><br/>Clone it, run it, own it. Free, MIT.<br/><a href="#quick-start">Quick start</a></td>
-    <td align="center"><strong>We customise it</strong><br/>Your fields, your rules, your Better Cater data brought across.<br/><a href="https://enterprisedna.co/omni/book/?utm_source=github&utm_medium=readme&utm_campaign=better-cater">Book a call</a></td>
-    <td align="center"><strong>We run it for you</strong><br/>Installed, connected and operated inside Omni. Setup fee, then a retainer.<br/><a href="https://enterprisedna.co/omni/instead-of/better-cater?utm_source=github&utm_medium=readme&utm_campaign=better-cater">How it works</a></td>
-  </tr>
-</table>
-
-<p align="center">
-  <a href="#what-is-this">What is this</a> &bull;
-  <a href="#why-no-front-end">Why no front end</a> &bull;
-  <a href="#quick-start">Quick start</a> &bull;
-  <a href="#the-commands">Commands</a> &bull;
-  <a href="#instead-of-better-cater">Instead of Better Cater</a> &bull;
-  <a href="#want-it-installed-and-run-for-you">Installed for you</a> &bull;
-  <a href="#license">License</a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Node-20+-339933?style=flat-square" alt="Node 20+" />
-  <img src="https://img.shields.io/badge/PostgreSQL-any-336791?style=flat-square" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/PGlite-embedded-3ecf8e?style=flat-square" alt="PGlite" />
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="MIT License" />
-</p>
-
----
-
-## What is this
-
-Catering for Claude Code does the job you pay Better Cater for, as a Postgres database and a set of agent commands. There is no web front end. You open the folder in [Claude Code](https://claude.com/claude-code) (or Codex, OpenCode, Cursor: see `AGENTS.md`) and ask for what you want in plain language. It runs the right query, and it can answer questions the Better Cater dashboard cannot.
-
-<!-- TODO(author): the annual bill. One sentence: what a 10 to 50 person business typically pays Better Cater per year, all in, with a source. -->
-
-Want the same thing with a web front end, or built on a different stack? That is a customisation, and it is exactly what Enterprise DNA does: [book a call](https://enterprisedna.co/omni/book/?utm_source=github&utm_medium=readme&utm_campaign=better-cater).
-
-<!-- TODO(author): two or three sentences on what this specific product covers and who it is for. -->
-
-## Why no front end
-
-- The front end was only ever there because the database was hard to talk to. That is no longer true.
-- Your data sits in plain Postgres tables you own. Any tool can read them. No export, no lock-in.
-- No seats, no tiers, no add-ons. Read [docs/why-no-front-end.md](docs/why-no-front-end.md) for the honest trade-offs too.
+| Do it yourself | We customise it | We run it for you |
+|---|---|---|
+| Free code. Install and operate it. Hosting and agent costs are yours. | Your menus, fields, food control plan checks and Better Cater data mapping. [Book a call](https://enterprisedna.co/omni/book?offer=replace-software&utm_campaign=better-cater&utm_medium=github). | Installed, connected and operated through Omni by Enterprise DNA. One setup fee, then a retainer. [See the offer](https://enterprisedna.co/omni/instead-of/better-cater). |
 
 ## Quick start
-
-Sixty seconds, no database install (an embedded Postgres runs inside Node):
 
 ```bash
 git clone https://github.com/Enterprise-DNA-OS/catering-for-claude-code.git
 cd catering-for-claude-code
 npm install
 npm run demo
+npm test
+npm run view
+npm run docs
 ```
 
-Then open the folder in Claude Code and type a slash command. <!-- TODO(author): name the first command to try. -->
+Node 20 or newer. PGlite runs locally without a database server. Set DATABASE_URL in the environment for shared Postgres, then npm run migrate. Local mode needs one process at a time. Use separate demo and live databases. Shared use requires permissions, backups and operator identity integration.
 
-### Use it with your own Postgres or Supabase
+The fictional demo includes four events, two menu items, an overdue deposit, a stale enquiry, a missing hire cost, partially packed carriers and food safety records needing review. Dates stay relative to the day the seed first runs. Seeding again does not duplicate or overwrite records.
 
-Copy `.env.example` to `.env`, set `DATABASE_URL`, then `npm run migrate`. Same commands, shared data, no per-seat fee.
+## Weekly catering work
 
-## The commands
-
-<!-- TODO(author): a table of the slash commands in .claude/commands and what each one does. -->
-
-| Command | What it does |
+| Job | Recipe |
 |---|---|
-| `/...` | ... |
+| /clients | .claude/commands/clients.md |
+| /menus | .claude/commands/menus.md |
+| /recipes | .claude/commands/recipes.md |
+| /event-week | .claude/commands/event-week.md |
+| /enquiries | .claude/commands/enquiries.md |
+| /event | .claude/commands/event.md |
+| /kitchen-prep | .claude/commands/kitchen-prep.md |
+| /shopping-list | .claude/commands/shopping-list.md |
+| /dietary-check | .claude/commands/dietary-check.md |
+| /dispatch | .claude/commands/dispatch.md |
+| /crew-roster | .claude/commands/crew-roster.md |
+| /deposits-due | .claude/commands/deposits-due.md |
+| /balances | .claude/commands/balances.md |
+| /event-profit | .claude/commands/event-profit.md |
+| /attention | .claude/commands/attention.md |
+| /compliance | .claude/commands/compliance.md |
+| /weekly-review | .claude/commands/weekly-review.md |
+| /draft-weekly | .claude/commands/draft-weekly.md |
+| /add | .claude/commands/add.md |
+| /edit | .claude/commands/edit.md |
+| /log | .claude/commands/log.md |
+| /import | .claude/commands/import.md |
+| /export | .claude/commands/export.md |
+| /documents | .claude/commands/documents.md |
+| /customise | .claude/commands/customise.md |
+| /new-view | .claude/commands/new-view.md |
 
-## Instead of better-cater
+The weekly rituals are enquiry follow-up, final dietary counts, kitchen prep, dispatch and deposit chasing. One CLI supports human output and --json. [CLI guide](docs/cli.md) covers writes, dates and money.
 
-<!-- TODO(author): how to bring data across from Better Cater; link docs/replace-better-cater.md -->
+## Ten questions across your records
 
-## Architecture
+Better Cater already offers production, shopping and profit reports. These are questions the free version answers today; we have not established that Better Cater cannot answer them.
 
+1. Which near-term events combine an overdue deposit and an unfinished dietary review? (`attention`)
+2. Which enquiries have gone quiet for more than a week? (`enquiries`)
+3. Which events lack cost evidence, so their margin is unknown? (`profit`)
+4. How many portions of each dish must the kitchen prepare for each confirmed event? (`prep`)
+5. Which mapped ingredients are needed across this week's events? (`shopping`)
+6. Which confirmed food lines have no recipe in the buying list? (`recipe-gaps`)
+7. Which carriers or utensils remain unpacked, and who owns them? (`dispatch`)
+8. Which crew members have overlapping assignments? (`clashes`)
+9. Which food records exceed cooling limits or lack temperature evidence? (`compliance`)
+10. Which completed events still have a balance outstanding? (`balances`)
+
+## Paperwork and views
+
+`npm run docs` writes six document types: banquet event orders, kitchen sheets, packing lists, proposals, balance statements and food-safety records. Every document is a draft. `npm run view` renders a read-only week dashboard from the same database. Edit brand.json for the business name, colours and logo. No frontend, payment handling, signatures or sending.
+
+Recipe amounts are per portion in each ingredient's recorded unit. Shopping includes mapped recipes only, not stock deductions or automatic substitutions. Quoted line prices and costs are snapshots. Missing line costs suppress margin. The tax view summarises completed events in a selected period; it is an event-date planning aid, not a tax return or cash-basis report. Currencies are never added together.
+
+## Food safety
+
+/compliance screens recorded Australian holding, exposure and cooling evidence against cited FSANZ guidance. NZ records require review against the registered food control plan. Missing evidence remains visible. It is not certification or a declaration that food is safe. [Scope and sources](docs/compliance.md).
+
+## Your first hour: ten things to ask for
+
+1. Put our name and logo on the kitchen sheet.
+2. Add our usual delivery instructions.
+3. Record our menu and ingredient units.
+4. Add our event captain field.
+5. Map the headings in our supplied Better Cater data.
+6. Group deposits by event captain.
+7. Add a linen return checklist.
+8. Add the checks in our registered food control plan.
+9. Show tomorrow's dietary instructions on the prep sheet.
+10. Draft Monday's handover from bookings, attention and prep.
+
+/customise backs up the records, writes a numbered migration and tests the affected workflows. /new-view adds a read-only dashboard. [What screens provide](docs/why-no-front-end.md).
+
+## Bring your history
+
+The [Better Cater switch guide](docs/replace-better-cater.md) distinguishes the vendor's documented PDF reports from our mapped CSV importer. Once event headers are prepared and clients matched, import them in one command. The fixture is synthetic; no verified standard Better Cater CSV layout was found. Financial lines, receipts, menus, safety history, documents and signatures need separate mapping and reconciliation.
+
+```bash
+npm run catering -- import better-cater --file=examples/better-cater-events.csv --dry-run
+npm run catering -- export --out=backups/catering.json
 ```
-catering-for-claude-code/
-  CLAUDE.md                 how the operator wants this run (routing table + house rules)
-  AGENTS.md                 the same, for Codex / OpenCode / Cursor / Gemini CLI
-  .claude/commands/         the slash commands
-  scripts/                  the CLI the commands drive
-  scripts/lib/db.mjs        one adapter: DATABASE_URL (pg) or embedded PGlite
-  supabase/migrations/      plain SQL schema
-  supabase/seed.sql         demo data
-  docs/                     the thesis and the migration guide
-```
 
-## Built for coding agents
+## Verification
 
-The database, CLI and command recipes work with Claude Code, Codex, OpenCode or Cursor. Ask your coding agent for a new command and have it implement and test the change against the same records.
+`npm test` uses a disposable database and output directory. It checks calculations, missing-cost handling, food-rule boundaries, import rollback and idempotence, ambiguous references, exports, every CLI read and write path, and all document types. CI runs Linux and Windows plus Postgres. Local test results are distinct from hosted CI results.
 
-## Contributing
-
-Issues and pull requests are welcome. Keep the shape: plain SQL, a small CLI, a slash command per recurring job, no front end.
-
-## Want it installed and run for you?
-
-Enterprise DNA installs Catering for Claude Code for your business, migrates your Better Cater data, connects it to the rest of your tools, and runs it for you as part of **Omni**, our managed Command Center. One setup fee, then a monthly retainer.
-
-- Book a call: [enterprisedna.co/omni/book](https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_medium=readme&utm_campaign=better-cater)
-- Read more: [enterprisedna.co/omni/instead-of/better-cater](https://enterprisedna.co/omni/instead-of/better-cater?utm_source=github&utm_medium=readme&utm_campaign=better-cater)
-
-## License
-
-MIT. Copyright (c) 2026 Enterprise DNA.
+MIT. Copyright 2026 Enterprise DNA.

@@ -11,3 +11,5 @@ Thumbs.db
 views/*.html
 docs-out/
 feeds/
+
+backups/

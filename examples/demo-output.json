@@ -1,0 +1,23 @@
+{
+  "captured": "2026-10-04",
+  "screens": [
+    {
+      "title": "The week needing attention",
+      "ask": "What needs sorting before the next events?",
+      "command": "npm run catering -- attention",
+      "output": "  code  name                    event_date  issue                 \n  ----  ----------------------  ----------  ----------------------\n  E104  Completed board lunch   2026-09-26  Overdue balance       \n  E101  Harbour awards dinner   2026-10-06  Dietary review missing\n  E101  Harbour awards dinner   2026-10-06  Overdue deposit       \n  E102  Engineering lunch       2026-10-07  Missing cost evidence \n  E103  Summer wedding enquiry  2026-10-29  Stale enquiry"
+    },
+    {
+      "title": "Kitchen preparation",
+      "ask": "What portions does the kitchen need for each event?",
+      "command": "npm run catering -- prep",
+      "output": "  code  event_date  item                 portions  allergens    notes\n  ----  ----------  -------------------  --------  -----------  -----\n  E101  2026-10-06  Garden bowl          10.000    soy, sesame       \n  E101  2026-10-06  Roast chicken plate  70.000    milk              \n  E102  2026-10-07  Garden bowl          35.000    soy, sesame"
+    },
+    {
+      "title": "Packing gaps",
+      "ask": "What still needs packing, and who is responsible?",
+      "command": "npm run catering -- dispatch",
+      "output": "  code  event_date  service_time  venue                  item                quantity  packed  remaining  responsible\n  ----  ----------  ------------  ---------------------  ------------------  --------  ------  ---------  -----------\n  E101  2026-10-06                Civic Hall             Insulated carriers  8         5       3          Moana      \n  E102  2026-10-07                Workshop meeting room  Serving utensils    4         4       0          Ravi"
+    }
+  ]
+}

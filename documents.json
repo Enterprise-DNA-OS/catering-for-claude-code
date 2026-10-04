@@ -1,11 +1,136 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
-    "file": "name",
+    "name": "event-order",
+    "title": "DRAFT Banquet event order",
+    "for_each": "select id,code from events where status<>'cancelled' order by event_date,code",
+    "file": "code",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Event",
+        "sql": "select code,name,client,event_date,service_time,venue,guests,status,notes from event_totals where id=$1"
+      },
+      {
+        "title": "Menu",
+        "sql": "select l.name,l.quantity,m.allergens,l.notes from lines l left join menus m on m.id=l.menu_id where event_id=$1 and category in ('food','beverage') order by l.name",
+        "note": "Allergen labels are recorded information. Confirm ingredients and cross-contact controls with the chef."
+      },
+      {
+        "title": "Dietary instructions",
+        "sql": "select name,guests,instructions,reviewed_by,reviewed_on from dietary where event_id=$1 order by name"
+      },
+      {
+        "title": "Crew",
+        "sql": "select name,role,start_at,end_at from roster where event_id=$1 order by start_at"
+      }
+    ]
+  },
+  {
+    "name": "kitchen-sheet",
+    "title": "DRAFT Kitchen prep sheet",
+    "for_each": "select id,code from events where status<>'cancelled' order by event_date,code",
+    "file": "code",
+    "sections": [
+      {
+        "title": "Event",
+        "sql": "select code,name,client,event_date,service_time,venue,guests,status,notes from event_totals where id=$1"
+      },
+      {
+        "title": "Portions",
+        "sql": "select l.name,l.quantity,m.allergens,l.notes from lines l left join menus m on m.id=l.menu_id where event_id=$1 and category in ('food','beverage') order by l.name"
+      },
+      {
+        "title": "Dietary instructions",
+        "sql": "select name,guests,instructions,reviewed_by,reviewed_on from dietary where event_id=$1 order by name"
+      }
+    ]
+  },
+  {
+    "name": "packing-list",
+    "title": "DRAFT Dispatch and packing list",
+    "for_each": "select id,code from events where status<>'cancelled' order by event_date,code",
+    "file": "code",
+    "sections": [
+      {
+        "title": "Delivery",
+        "sql": "select code,name,client,event_date,service_time,venue,guests,status,notes from event_totals where id=$1"
+      },
+      {
+        "title": "Equipment",
+        "sql": "select name,quantity,packed,responsible from packing where event_id=$1 order by name"
+      },
+      {
+        "title": "Food",
+        "sql": "select l.name,l.quantity,m.allergens,l.notes from lines l left join menus m on m.id=l.menu_id where event_id=$1 and category in ('food','beverage') order by l.name"
+      }
+    ]
+  },
+  {
+    "name": "proposal",
+    "title": "DRAFT Catering proposal",
+    "for_each": "select id,code from events where status<>'cancelled' order by event_date,code",
+    "file": "code",
+    "sections": [
+      {
+        "title": "Event",
+        "sql": "select code,name,client,event_date,service_time,venue,guests,status,notes from event_totals where id=$1"
+      },
+      {
+        "title": "Charges",
+        "sql": "select name,category,quantity,unit_price_cents,round(quantity*unit_price_cents)::bigint line_cents from lines where event_id=$1 order by category,name",
+        "note": "Amounts use the event currency."
+      },
+      {
+        "title": "Totals",
+        "sql": "select currency,net_cents,tax_rate,tax_cents,total_cents from event_totals where id=$1",
+        "note": "Review terms and amounts before issuing. No signature or send action."
+      },
+      {
+        "title": "Payment schedule",
+        "sql": "select currency,deposit_due,deposit_cents,balance_due from event_totals where id=$1"
+      }
+    ]
+  },
+  {
+    "name": "balance-statement",
+    "title": "DRAFT Balance statement",
+    "for_each": "select id,code from events where status<>'cancelled' order by event_date,code",
+    "file": "code",
+    "sections": [
+      {
+        "title": "Event",
+        "sql": "select code,name,client,event_date,service_time,venue,guests,status,notes from event_totals where id=$1"
+      },
+      {
+        "title": "Balance",
+        "sql": "select currency,total_cents,paid_cents,balance_cents,balance_due from event_totals where id=$1",
+        "note": "This is a draft statement, not a tax invoice."
+      },
+      {
+        "title": "Receipts",
+        "sql": "select reference,paid_on,amount_cents from payments where event_id=$1 order by paid_on",
+        "note": "Receipts are recorded manually. No payment processing."
+      }
+    ]
+  },
+  {
+    "name": "food-safety-record",
+    "title": "DRAFT Food safety record",
+    "for_each": "select id,code from events where status<>'cancelled' order by event_date,code",
+    "file": "code",
+    "sections": [
+      {
+        "title": "Event",
+        "sql": "select code,name,client,event_date,service_time,venue,guests,status,notes from event_totals where id=$1"
+      },
+      {
+        "title": "Observations",
+        "sql": "select name,mode,temperature_c,exposure_minutes,first_cooling_minutes,second_cooling_minutes,observed_at,operator,corrective_action,jurisdiction from food_logs where event_id=$1 order by observed_at"
+      },
+      {
+        "title": "Checks",
+        "sql": "select name,finding,corrective_action from food_checks where event_id=$1 order by observed_at",
+        "note": "Evidence screening only. Follow the applicable food control plan and responsible food handler judgement."
+      }
     ]
   }
 ]

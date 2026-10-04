@@ -1,0 +1,10 @@
+{
+  "code": "Event ID",
+  "name": "Event Name",
+  "client": "Client",
+  "event_date": "Event Date",
+  "guests": "Guest Count",
+  "status": "Status",
+  "currency": "Currency",
+  "venue": "Venue"
+}

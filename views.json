@@ -1,13 +1,19 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "Catering for Claude Code: what needs attention, rendered by npm run view",
+    "title": "Catering week",
     "sections": [
       {
+        "title": "Bookings",
+        "sql": "select code,name,event_date,guests,status from events where event_date between current_date and current_date+6 and status<>'cancelled' order by event_date,code"
+      },
+      {
         "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "sql": "select code,name,issue from attention_queue order by code,issue"
+      },
+      {
+        "title": "Kitchen prep",
+        "sql": "select code,item,portions,allergens from kitchen_prep where event_date between current_date and current_date+6 order by code,item"
       }
     ]
   }

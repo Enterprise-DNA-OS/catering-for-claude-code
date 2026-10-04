@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Which near-term events combine an overdue deposit and an unfinished dietary review?",
+    "command": "npm run catering -- attention"
+  },
+  {
+    "question": "Which enquiries have gone quiet for more than a week?",
+    "command": "npm run catering -- enquiries"
+  },
+  {
+    "question": "Which events lack cost evidence, so their margin is unknown?",
+    "command": "npm run catering -- profit"
+  },
+  {
+    "question": "How many portions of each dish must the kitchen prepare for each confirmed event?",
+    "command": "npm run catering -- prep"
+  },
+  {
+    "question": "Which mapped ingredients are needed across this week's events?",
+    "command": "npm run catering -- shopping"
+  },
+  {
+    "question": "Which confirmed food lines have no recipe in the buying list?",
+    "command": "npm run catering -- recipe-gaps"
+  },
+  {
+    "question": "Which carriers or utensils remain unpacked, and who owns them?",
+    "command": "npm run catering -- dispatch"
+  },
+  {
+    "question": "Which crew members have overlapping assignments?",
+    "command": "npm run catering -- clashes"
+  },
+  {
+    "question": "Which food records exceed cooling limits or lack temperature evidence?",
+    "command": "npm run catering -- compliance"
+  },
+  {
+    "question": "Which completed events still have a balance outstanding?",
+    "command": "npm run catering -- balances"
+  }
+]
