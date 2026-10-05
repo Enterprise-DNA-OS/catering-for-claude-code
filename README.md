@@ -4,7 +4,7 @@ Events, menus, kitchen prep, dispatch and deposits in a database you own. Built 
 
 | Do it yourself | We customise it | We run it for you |
 |---|---|---|
-| Free code. Install and operate it. Hosting and agent costs are yours. | Your menus, fields, food control plan checks and Better Cater data mapping. [Book a call](https://enterprisedna.co/omni/book?offer=replace-software&utm_campaign=better-cater&utm_medium=github). | Installed, connected and operated through Omni by Enterprise DNA. One setup fee, then a retainer. [See the offer](https://enterprisedna.co/omni/instead-of/better-cater). |
+| Free code. Install and operate it. Hosting and agent costs are yours. | Your menus, fields, food control plan checks and Better Cater data mapping. [Book a call](https://enterprisedna.co/omni/book?offer=replace-software&utm_campaign=better-cater&utm_medium=github). | Installed, connected and operated through Omni by Enterprise DNA. One setup fee, then a retainer. [See the offer](https://enterprisedna.co/omni/instead-of/better-cater?utm_source=github&utm_medium=readme&utm_campaign=better-cater). |
 
 ## Quick start
 
